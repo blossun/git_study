@@ -1,0 +1,39 @@
+a{
+  color:black;
+  text-decoration: none;
+}
+h1 {
+  font-size: 50px;
+  text-align: center;
+  border-bottom: 1px solid gray;
+  margin: 0;
+  padding: 20px;
+}
+ul{
+  border-right: 1px solid gray;
+  width: 100px;
+  margin: 0;
+  padding: 20px;
+}
+#grid{
+  display: grid;
+  grid-template-columns: 150px 1fr;
+}
+#grid ul{ /* 모든 ul 태그 중 부모가 #grid인 태그를 선택하는 선택자 */
+  padding-left: 35px;
+}
+#grid #article{
+  padding-left: 25px;
+}
+@media(max-width:600px){ /* 화면 사이즈가 600px 이하일 때 적용할 디자인 */
+  h1{
+    font-size: 30px;
+    border-bottom: none;
+  }
+  #grid{
+    display: block;
+  }
+  ul{
+    border-right: none;
+  }
+}
