@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <title>JAVA kong Cafe</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="./colors.js"></script>
+  <!-- use fetch polyfill CDN -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8.1/dist/polyfill.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0/dist/fetch.umd.min.js"></script> -->
+
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8.1.3/dist/polyfill.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"></script>
+</head>
+<body>
+  <h1><a href="#!welcome">Javakong Cafe</a></h1>
+  <input type="button" value="night" onclick="nightDayHandler(this)">
+  <div id="grid">
+      <ol id="nav"> <!-- 글 목록이 들어갈 위치 -->
+      </ol>
+    <article>
+    </article>
+    <script>
+      var fetchPage = function(filename){
+        fetch(filename).then(function(response){
+          response.text().then(function(text){
+            document.querySelector('article').innerHTML = text;
+          })
+        })
+      }
+      if(location.hash){
+        fetchPage(location.hash.substr(2)); //substr 문자열 자르기
+      }else{
+        fetchPage('welcome');
+      }
+      /*
+      //for of 문 - IE 지원 안 함.
+      fetch('list2').then(function(response){ //글 목록 가져오기
+        response.text().then(function(text){
+          var items = text.split(",");
+          var navtext = '';
+          for (var value of items){
+            value = value.trim();
+            navtext += "<li><a href=\"#!"+value+"\" onclick=\"fetchPage('"+value+"')\">"+value+"</a></li>";
+
+          }
+          document.querySelector('#nav').innerHTML = navtext;
+
+        })
+      })
+      */
+      fetch('list2').then(function(response){
+         response.text().then(function(text){
+           var items = text.split(',');
+           var i = 0;
+           var tags = '';
+           while(i<items.length){
+             var item = items[i];
+             item = item.trim();
+             var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>';
+             tags = tags + tag;
+             i = i + 1;
+           }
+           document.querySelector('#nav').innerHTML = tags;
+         })
+       });
+    </script>
+  </div>
+</body>
+</html>

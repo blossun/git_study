@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Object</h1>
+    <h2>Create</h2>       <!--객체 생성, 데이터 추가, 호출-->
+    <script>
+      var coworkers = {     //객체 정의
+        "programmer":"egoing",
+        "designer":"leezche"
+      };
+      document.write("programer : " + coworkers.programmer+"<br>"); //객체 호출
+      document.write("designer : " + coworkers.designer+"<br>");
+      coworkers.bookkeeper = "duru";    //객체 데이터 추가(1)
+      document.write("bookkeeper : " + coworkers.bookkeeper+"<br>");
+      coworkers["data scientist"] = "taeho";  //객체 데이터 추가(2) - key에 공백이 들어갈 경우
+      document.write("data scientist : " + coworkers["data scientist"]+"<br>");
+    </script>
+    <h2>Iterate</h2>      <!--반복문을 이용해 객체 안의 모든 데이터를 가져오기-->
+    <script>
+      for(var key in coworkers){
+        document.write(key+" : "+ coworkers[key]+"<br>");
+      }
+    </script>
+    <h2>Property & Method</h2>  <!--객체에 '함수'라는 데이터 저장-->
+    <script>
+      coworkers.showAll = function (){
+        for(var key in this){
+          document.write(key+" : "+ this[key]+"<br>");
+        }
+      }
+      coworkers.showAll();
+    </script>
+  </body>
+</html>

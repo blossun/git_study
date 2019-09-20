@@ -1,0 +1,38 @@
+<!<!DOCTYPE html>
+<html>
+  <body>
+    <article>
+    </article>
+    <input type="button" value="fetch" onclick="
+      /*
+      fetch('html').then(function(response){
+        response.text().then(function(text){
+          document.querySelector('article').innerHTML = text;
+        })
+      })
+      */
+      /* <!-- 같은 코드 (1) -->
+      function callbackme(){
+        console.log('response end');
+      }
+      fetch('html').then(callbackme);
+      */
+      /* <!-- 같은 코드 (2) -->
+      callbackme = function (){
+        console.log('response end');
+      }
+      fetch('html').then(callbackme);
+      */
+      <!-- 같은 코드 (3) : 익명 함수 -->
+      fetch('javascript').then(function (response){
+        console.log(response);
+        if(response.status == '404'){
+          alert('Not Found');
+        }
+      });
+
+      console.log('1');
+      console.log('2');
+    ">
+  </body>
+</html>
